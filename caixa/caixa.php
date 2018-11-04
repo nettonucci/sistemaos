@@ -46,6 +46,12 @@ $rec=null;
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+  
+</head>
   </head>
 
   <body id="page-top">
@@ -142,6 +148,34 @@ $rec=null;
               <i class="fas fa-money-bill-alt"></i>
             <span>Lançamentos</span></a>
         </li>
+        <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#demo">Relatórios</button>
+  <div id="demo" class="collapse">
+  <li class="nav-item">
+          <a class="nav-link" href="caixa.php">
+              <i class="fas fa-user-alt"></i>
+            <span>Clientes</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="caixa.php">
+              <i class="fas fa-fw fa-boxes"></i>
+            <span>Estoque</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="caixa.php">
+              <i class="fas fa-fw fa-tags"></i>
+            <span>OS's</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="caixa.php">
+              <i class="fas fa-fw fa-shopping-cart"></i>
+            <span>Vendas</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="caixa.php">
+              <i class="fas fa-money-bill-alt"></i>
+            <span>Lançamentos</span></a>
+        </li>
+  </div>
       </ul>
 
       <div id="content-wrapper">
@@ -155,6 +189,7 @@ $rec=null;
             </li>
             <li class="breadcrumb-item active">Lançamentos</li>
           </ol>
+          
 
           <form data-toggle="validator" method="post" action="ValInsRec.php">
  <!-- Button trigger modal -->
@@ -174,25 +209,25 @@ $rec=null;
       <div class="modal-body">
       
                       <div>
-                        <label>Cliente/Fornecedor<span class="required">*</span></label>
+                        <label><b>Cliente/Fornecedor</b><span class="required">*</span></label>
                         <input type="text" class="form-control" name="idclir">
                       </div>
                     <hr>
 
                     <div>
-                        <label>Descrição<span class="required">*</span></label>
+                        <label><b>Descrição<b><span class="required">*</span></label>
                         <input type="text" class="form-control" name="iddesr">
                       </div>
                     <hr>
 
                     <div>
-                        <label>Valor<span class="required">*</span></label>
+                        <label><b>Valor</b><span class="required">*</span></label>
                         <input type="text" class="form-control" name="idvalr">
                       </div>
                     <hr>
                     
 
-                    <label><b>Metodo de pagamento</b></label>
+                    <label><b>Metodo de pagamento</b><span class="required">*</span></label>
                     <select class="form-control" name="idmtdpgtor" id="pgto">
                         <option>Selecione...</option>
  
@@ -202,11 +237,10 @@ $rec=null;
                                    </select>
                     <hr>   
                     
-                    <label><b>Forma de pagamento</b></label>
+                    <label><b>Forma de pagamento</b><span class="required">*</span></label>
                     <select class="form-control" name="idforpgtor" id="peca">
                     <option selected>Selecione...</option>
                     <option value="À vista">À vista</option>
-                    <option value="1x">1x</option>
                     <option value="2x">2x</option>
                     <option value="3x">3x</option>
                     <option value="4x">4x</option>
@@ -219,6 +253,12 @@ $rec=null;
                     <option value="11x">11x</option>
                     <option value="12x">12x</option>
                     </select>
+                    <hr>
+                    <div>
+                    <label><b>Data da entrada</b></label>
+                    <p>
+                    <input type="date" name="iddata">
+                    </div>
  
 
       </div>
@@ -229,9 +269,9 @@ $rec=null;
     </div>
   </div>
 </div>
-                    
-                    
-                      </form>
+</form>
+<br>
+<br>
 
                       <form data-toggle="validator" method="post" action="ValInsDes.php">
  <!-- Button trigger modal -->
@@ -327,6 +367,7 @@ $rec=null;
              <th widht="80" align="center">Valor</th>
              <th widht="80" align="center">Metodo de pagamento</th>
              <th widht="80" align="center">Forma de pagamento</th>
+             <th widht="80" align="center">Data</th>
              <th widht="80" align="center">Tipo</th>
              <th></th>
            </tr>
@@ -339,6 +380,7 @@ $rec=null;
             <td>R$<?php echo $row['valpgto'] ?>,00</td>
             <td><?php echo $row['tipopgto'] ?></td>
             <td><?php echo $row['formpgto'] ?></td>
+            <td><?php echo $row['dataentrada'] ?></td>
             <td><?php echo $row['tipopgtoo'] ?></td>
 
             <?php 

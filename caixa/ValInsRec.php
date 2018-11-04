@@ -6,14 +6,15 @@
    $val = trim($_POST['idvalr']);
    $mtdpgto = trim($_POST['idmtdpgtor']);
    $forpgto = trim($_POST['idforpgtor']);
+   $data = trim($_POST['iddata']);
    $tip = 'RECEITA';
 
  
    if (!empty($cli)){
       $con = open_conexao();  
       $sql = "INSERT INTO caixa 
-               (clientepgto, eqppgto, valpgto, mtdpgto, formpgto, tipopgtoo)
-        VALUES ('$cli', '$eqp', '$val', '$mtdpgto', '$forpgto', '$tip');";  
+               (clientepgto, eqppgto, valpgto, mtdpgto, formpgto, dataentrada, tipopgtoo)
+        VALUES ('$cli', '$eqp', '$val', '$mtdpgto', '$forpgto', '$data', '$tip');";  
       $ins = mysqli_query($con, $sql); 
    
       if ($ins==FALSE)
@@ -30,7 +31,8 @@
       echo $mtdpgto;
       echo $forpgto;
       echo $tip;
+      echo $data;
    }
-   header('location: caixa.php');
+   //header('location: caixa.php');
 ?> 
 
