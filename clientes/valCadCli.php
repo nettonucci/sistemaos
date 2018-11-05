@@ -12,13 +12,14 @@
    $bairro = trim($_POST['idBai']); 
    $cidade = trim($_POST['idCid']); 
    $estado = trim($_POST['idEst']);  
+   $data = trim($_POST['iddatacad']);
 
  
    if (!empty($nome) && !empty($cpf) && !empty($telefone) && !empty($celular) && !empty($email) && !empty($cep) && !empty($rua) && !empty($numero) && !empty($bairro) && !empty($cidade) && !empty($estado)){
       $con = open_conexao();  
       $sql = "INSERT INTO clientes 
-               (nome, cpf, telefone, celular, email, cep, rua, numero, bairro, cidade, estado)
-        VALUES ('$nome', '$cpf', '$telefone', '$celular', '$email', '$cep', '$rua', '$numero', '$bairro', '$cidade', '$estado');";  
+               (nome, cpf, telefone, celular, email, cep, rua, numero, bairro, cidade, estado, datacad)
+        VALUES ('$nome', '$cpf', '$telefone', '$celular', '$email', '$cep', '$rua', '$numero', '$bairro', '$cidade', '$estado', '$data');";  
       $ins = mysqli_query($con, $sql); 
 
       if ($ins==FALSE)

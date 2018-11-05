@@ -121,6 +121,34 @@
               <i class="fas fa-money-bill-alt"></i>
             <span>Lançamentos</span></a>
         </li>
+        <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#demo">Relatórios</button>
+  <div id="demo" class="collapse">
+  <li class="nav-item">
+          <a class="nav-link" href="caixa.php">
+              <i class="fas fa-user-alt"></i>
+            <span>Clientes</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="caixa.php">
+              <i class="fas fa-fw fa-boxes"></i>
+            <span>Estoque</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="caixa.php">
+              <i class="fas fa-fw fa-tags"></i>
+            <span>OS's</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="caixa.php">
+              <i class="fas fa-fw fa-shopping-cart"></i>
+            <span>Vendas</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="caixa.php">
+              <i class="fas fa-money-bill-alt"></i>
+            <span>Lançamentos</span></a>
+        </li>
+  </div>
       </ul>
 
       <div id="content-wrapper">
@@ -165,6 +193,7 @@
                         <label>Quantidade<span class="required">*</span></label>
                         <input type="text" class="form-control" name="idQtd">
                       </div>
+                      <input type="hidden" name="iddatacad" id="id"  value="<?php echo date('d/m/Y'); ?>">
                       <br>
                       <input type="submit" class="btn btn-outline-success" value="Cadastrar"/>
                     </form>

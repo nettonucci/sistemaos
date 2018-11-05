@@ -29,8 +29,8 @@
    if (!empty($id)){
       $con = open_conexao();  
       $sql = "INSERT INTO caixa 
-               (ospgto, clientepgto, eqppgto, valpgto, mtdpgto, formpgto, tipopgtoo)
-        VALUES ('$id', '$cli', '$eqp', '$val', '$mtdpgto', '$forpgto', '$tip');";  
+               (ospgto, clientepgto, eqppgto, valpgto, mtdpgto, formpgto, tipopgtoo, dataentrada)
+        VALUES ('$id', '$cli', '$eqp', '$val', '$mtdpgto', '$forpgto', '$tip', '$data');";  
       $ins = mysqli_query($con, $sql); 
 
       $sql2 = "UPDATE os SET final='$pgto', datasaida='$data', status='$status'

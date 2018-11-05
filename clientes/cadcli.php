@@ -226,6 +226,7 @@
                         <label>Estado<span class="required">*</span></label>
                         <input type="text" class="form-control" name="idEst">
                       </div>
+                      <input type="hidden" name="iddatacad" id="id"  value="<?php echo date('d/m/Y'); ?>">
                       <br>
                       <input type="submit" class="btn btn-outline-success" value="Cadastrar"/>
                     </form>

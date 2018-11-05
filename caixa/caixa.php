@@ -176,6 +176,35 @@ $rec=null;
             <span>Lançamentos</span></a>
         </li>
   </div>
+  <br>
+  <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#demo1">Configuração</button>
+  <div id="demo1" class="collapse">
+  <li class="nav-item">
+          <a class="nav-link" href="caixa.php">
+              <i class="fas fa-user-alt"></i>
+            <span>Clientes</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="caixa.php">
+              <i class="fas fa-fw fa-boxes"></i>
+            <span>Estoque</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="caixa.php">
+              <i class="fas fa-fw fa-tags"></i>
+            <span>OS's</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="caixa.php">
+              <i class="fas fa-fw fa-shopping-cart"></i>
+            <span>Vendas</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="caixa.php">
+              <i class="fas fa-money-bill-alt"></i>
+            <span>Lançamentos</span></a>
+        </li>
+  </div>
       </ul>
 
       <div id="content-wrapper">
@@ -335,6 +364,12 @@ $rec=null;
                     <option value="11x">11x</option>
                     <option value="12x">12x</option>
                     </select>
+                    <hr>
+                    <div>
+                    <label><b>Data da entrada</b></label>
+                    <p>
+                    <input type="date" name="iddata">
+                    </div>
  
 
       </div>

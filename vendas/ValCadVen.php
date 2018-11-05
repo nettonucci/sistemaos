@@ -61,8 +61,8 @@
       $ins = mysqli_query($con, $sql); 
 
       $sql2 = "INSERT INTO caixa 
-                (clientepgto, eqppgto, valpgto, mtdpgto, formpgto, tipopgtoo)
-        VALUES ('$cli', '$peca2', '$val', '$mtdpgto', '$forpgto', '$tip');";   
+                (clientepgto, eqppgto, valpgto, mtdpgto, formpgto, tipopgtoo, dataentrada)
+        VALUES ('$cli', '$peca2', '$val', '$mtdpgto', '$forpgto', '$tip', '$data');";   
       $ins = mysqli_query($con, $sql2); 
       
       $sql3 = "UPDATE estoque SET quantidade='$soma'

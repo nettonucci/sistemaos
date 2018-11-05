@@ -5,13 +5,14 @@
    $comp = trim($_POST['idComp']); 
    $vend = trim($_POST['idVend']); 
    $qtd = trim($_POST['idQtd']); 
+   $data = trim($_POST['iddatacad']); 
    
  
    if (!empty($desc) && !empty($comp) && !empty($vend) && !empty($qtd)){
       $con = open_conexao();  
       $sql = "INSERT INTO estoque 
-               (descricao, precocompra, precovenda, quantidade)
-        VALUES ('$desc', '$comp', '$vend', '$qtd');";  
+               (descricao, precocompra, precovenda, quantidade, datacad)
+        VALUES ('$desc', '$comp', '$vend', '$qtd', '$data');";  
       $ins = mysqli_query($con, $sql); 
 
       if ($ins==FALSE)

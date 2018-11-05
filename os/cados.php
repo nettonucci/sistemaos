@@ -22,7 +22,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-    <title>SB Admin - Tables</title>
+    <title>Sistema - Nucci</title>
 
     <!-- Bootstrap core CSS-->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -134,6 +134,34 @@
               <i class="fas fa-money-bill-alt"></i>
             <span>Lançamentos</span></a>
         </li>
+        <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#demo">Relatórios</button>
+  <div id="demo" class="collapse">
+  <li class="nav-item">
+          <a class="nav-link" href="caixa.php">
+              <i class="fas fa-user-alt"></i>
+            <span>Clientes</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="caixa.php">
+              <i class="fas fa-fw fa-boxes"></i>
+            <span>Estoque</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="caixa.php">
+              <i class="fas fa-fw fa-tags"></i>
+            <span>OS's</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="caixa.php">
+              <i class="fas fa-fw fa-shopping-cart"></i>
+            <span>Vendas</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="caixa.php">
+              <i class="fas fa-money-bill-alt"></i>
+            <span>Lançamentos</span></a>
+        </li>
+  </div>
       </ul>
 
       <div id="content-wrapper">
@@ -186,7 +214,7 @@
                     <div class="col-sm-4">
                     <label>Status<span class="required">*</span></label>
                     <br>
-                    <select class="form-control" name="status" id="peca">
+                    <select class="form-control" name="idstatus" id="peca">
                     <option value="Aguardando avaliação do tecnico">Aguardando avaliação do tecnico</option>
                     <option value="Diagnostico em andamento">Diagnostico em andamento</option>
                     <option value="Aguardando aprovação de orçamento">Aguardando aprovação de orçamento</option>
