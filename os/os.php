@@ -35,6 +35,13 @@ close_conexao($con);
     <link href="../css/sb-admin.css" rel="stylesheet">
 
     <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+    <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
   </head>
 
@@ -134,31 +141,33 @@ close_conexao($con);
         </li>
         <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#demo">Relatórios</button>
   <div id="demo" class="collapse">
-  <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
+  <hr color=white>
+        <li class="nav-item">
+          <a class="nav-link" href="../relatorios/rel_clientes.php">
               <i class="fas fa-user-alt"></i>
             <span>Clientes</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
+          <a class="nav-link" href="../relatorios/rel_estoque.php">
               <i class="fas fa-fw fa-boxes"></i>
             <span>Estoque</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
+          <a class="nav-link" href="../relatorios/rel_os.php">
               <i class="fas fa-fw fa-tags"></i>
             <span>OS's</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
+          <a class="nav-link" href="../relatorios/rel_vendas.php">
               <i class="fas fa-fw fa-shopping-cart"></i>
             <span>Vendas</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
+          <a class="nav-link" href="../relatorios/rel_lanc.php">
               <i class="fas fa-money-bill-alt"></i>
             <span>Lançamentos</span></a>
         </li>
+        <hr color=white>
   </div>
       </ul>
 
@@ -177,7 +186,46 @@ close_conexao($con);
           <a class="btn btn-success" href="cados.php"> <i class="ion-plus-round"></i> Adicionar Ordens de Serviço</a>
           <br>
           <br>
-          
+          <div>
+          <form data-toggle="validator" method="post" action="buscaOS.php">
+  <!-- Button to Open the Modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fas fa-search"></i>
+    Editar OS
+  </button>
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Editar OS</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+        <div class="col-sm-4">
+                      <label>OS Nº</label>
+                      <input type="text" class="form-control" name="idid">
+                    </div>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+        <input type="submit" class="btn btn-success" value="Abrir"/>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
+</form>
+<button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#demo2"><i class="far fa-eye"></i> Listar OS's</button>
+  <div id="demo2" class="collapse">
+    <br>
           <!-- DataTables Example -->
           <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
           <div class="card mb-3">

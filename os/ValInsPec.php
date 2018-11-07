@@ -70,13 +70,18 @@
         <div class="modal-body">
          <?php
             Echo $msg;
+            Echo "<script>
+            function redirecionar(){
+              window.location.href=editos.php?idos=$idos;
+            }
+            </script>";
             
          ?>
         </div>
         
         <!-- Modal footer -->
         <div class="modal-footer">
-        <input type="button" value="OK" onClick="history.go(-1)">
+        <input type="button" value="OK" onclick="redirecionar()">
         </div>
         
       </div>

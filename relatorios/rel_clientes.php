@@ -1,31 +1,14 @@
 <?php
-require_once '../conexao.php'; 
+  //verifica sessão, se está logado 
+//session_start();
+//if (!isset($_SESSION['user'])) //AND (!isset($_SESSION[nome])) ) 
+//Header("Location: index.html");
 
-$con = open_conexao(); 
-//selectDb(); 
-   //recuperar valor passado por get
-$id = trim($_REQUEST['id']);
-    //buscar no banco de dados
-$rs = mysqli_query($con, "select * from clientes where id=".$id);
-
-$row = mysqli_fetch_array($rs);
-$id = $row['id']; 
-$nome = $row['nome']; 
-$cpf = $row['cpf'];
-$tel = $row['telefone']; 
-$cel = $row['celular'];
-$email = $row['email'];
-$cep = $row['cep'];
-$rua = $row['rua']; 
-$num = $row['numero'];
-$bai = $row['bairro'];
-$cid = $row['cidade'];
-$est = $row['estado'];
-close_conexao($con); 
-
+require_once '../conexao.php';
+$con = open_conexao();
+$rs = mysqli_query($con,"select * from clientes;"); //rs=record set (conjunto de registros)
+close_conexao($con);
 ?>
-
-<!DOCTYPE html>
 <html lang="en">
 
   <head>
@@ -35,11 +18,6 @@ close_conexao($con);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
     <title>Sistema - Nucci</title>
 
@@ -56,6 +34,11 @@ close_conexao($con);
     <link href="../css/sb-admin.css" rel="stylesheet">
 
     <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
   </head>
 
@@ -123,13 +106,13 @@ close_conexao($con);
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="index.php">
+          <a class="nav-link" href="../index.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
           </a>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="clientes.php">
+        <li class="nav-item">
+          <a class="nav-link" href="../clientes/clientes.php">
             <i class="fas fa-fw fa-user-alt"></i>
             <span>Clientes</span></a>
         </li>
@@ -155,33 +138,31 @@ close_conexao($con);
         </li>
         <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#demo">Relatórios</button>
   <div id="demo" class="collapse">
-  <hr color=white>
-        <li class="nav-item">
-          <a class="nav-link" href="../relatorios/rel_clientes.php">
+  <li class="nav-item active">
+          <a class="nav-link" href="rel_clientes.php">
               <i class="fas fa-user-alt"></i>
             <span>Clientes</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../relatorios/rel_estoque.php">
+          <a class="nav-link" href="rel_estoque.php">
               <i class="fas fa-fw fa-boxes"></i>
             <span>Estoque</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../relatorios/rel_os.php">
+          <a class="nav-link" href="rel_os.php">
               <i class="fas fa-fw fa-tags"></i>
             <span>OS's</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../relatorios/rel_vendas.php">
+          <a class="nav-link" href="rel_vendas.php">
               <i class="fas fa-fw fa-shopping-cart"></i>
             <span>Vendas</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../relatorios/rel_lanc.php">
+          <a class="nav-link" href="rel_lanc.php">
               <i class="fas fa-money-bill-alt"></i>
             <span>Lançamentos</span></a>
         </li>
-        <hr color=white>
   </div>
       </ul>
 
@@ -192,157 +173,83 @@ close_conexao($con);
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="index.html">Dashboard</a>
+              <a href="index.php">Dashboard</a>
             </li>
-            <li class="breadcrumb-item">
-              <a href="clientes.php">Clientes</a>
-            </li>
-            <li class="breadcrumb-item active">Visualizar Cliente</li>
+            <li class="breadcrumb-item active">Relatorios</li>
+            <li class="breadcrumb-item active">Clientes</li>
           </ol>
 
-
-          <!-- DataTables Example -->
-          <form data-toggle="validator" method="post" action="valRemCli.php">
-          <div class="card mb-3">
+        <!-- /Informacoes aqui -->
+        <form data-toggle="validator" method="post" action="clientes/busca_rapida_cliente.php" target="_blank">
+          <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+          <div class="container">
+            <div class="row">
+              <div class="col-6">
+              <div class="card mb-3" style="width: 100%;">
             <div class="card-header">
-              <i class="fas fa-user-alt"></i>
-              Visualizar Cliente</div>
+            <i class="far fa-list-alt"></i>
+            <span>Relatórios Rápidos</span>
+            </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
-                  
-                  <input type="hidden" name="id"  value="<?php echo $id?>">
+                  <div class="widget-content">
+                <button class="btn btn-light btn-block"><i class="fas fa-user"></i> Todos os clientes</button>
+                
+            </div>
 
-                  <div id="accordion">
-                    <div class="card">
-    <div class="card-header" id="headingOne">
-      <h5 class="mb-0">
-        <i class="btn btn-link" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Dados Pessoais
-</i>
-      </h5>
-    </div>
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-      <div class="card-body">
-      <div class="col-sm-4">
-                      <label>Nome</label> 
-                      <input type="text" class="form-control" name="idNome" value="<?php echo $nome?>" disabled>
-                    </div>
-                    <br>
-                    <div class="col-sm-4">
-                        <label>CPF/CNPJ</label>
-                        <input type="text" class="form-control" name="idCpf" value="<?php echo $cpf?>" disabled>
-                      </div>
-                      
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header" id="headingTwo">
-      <h5 class="mb-0">
-        <i class="btn btn-link collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Contatos
-</i>
-      </h5>
-    </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-      <div class="card-body">
-      
-        <div class="col-sm-4">
-          <label>Telefone</label>
-            <input type="text" class="form-control" name="idTel" value="<?php echo $tel?>" disabled>
-        </div>
-        <br>
-        <div class="col-sm-4">
-          <label>Celular</label>
-            <input type="text" class="form-control" name="idCel" value="<?php echo $cel?>" disabled>
-         </div>
-        <br>
-        <div class="col-sm-4">
-          <label>Email</label>
-            <input type="text" class="form-control" name="idEmail" value="<?php echo $email?>" disabled>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header" id="headingThree">
-      <h5 class="mb-0">
-        <i class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Endereço
-</i>
-      </h5>
-    </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-      <div class="card-body">
-      <div class="col-sm-4">
-                        <label>CEP</label>
-                        <input type="text" class="form-control" name="idCep" value="<?php echo $cep?>" disabled>
-                      </div>
-                      <br>
-                      <div class="col-sm-4">
-                        <label>Rua</label>
-                        <input type="text" class="form-control" name="idRua" value="<?php echo $rua?>" disabled>
-                      </div>
-                      <br>
-                      <div class="col-sm-4">
-                        <label>Numero</label>
-                        <input type="text" class="form-control" name="idNum" value="<?php echo $num?>" disabled>
-                      </div>
-                      <br>
-                      <div class="col-sm-4">
-                        <label>Bairro</label>
-                        <input type="text" class="form-control" name="idBai" value="<?php echo $bai?>" disabled>
-                      </div>
-                      <br>
-                      <div class="col-sm-4">
-                        <label>Cidade</label>
-                        <input type="text" class="form-control" name="idCid" value="<?php echo $cid?>" disabled>
-                      </div>
-                      <br>
-                      <div class="col-sm-4">
-                        <label>Estado</label>
-                        <input type="text" class="form-control" name="idEst" value="<?php echo $est?>" disabled>
-                      </div>
-      </div>
-    </div>
-  </div>
-</div>
-<br>
-<input type="submit" class="btn btn-outline-danger" value="Excluir"/>
-
-
-
-
-
-
-                    </form>
-                  </tbody>
-                </table>
+                
               </div>
             </div>
-            <div class="card-footer small text-muted"> </div>
           </div>
+              </div>
+</form>
+           
+          
+              <div class="col-6">
+              <form data-toggle="validator" method="post" action="clientes/busca_custom_cliente.php" target="_blank">
+          <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+          <div class="card mb-3" style="width: 100%;">
+            <div class="card-header">
+            <i class="far fa-list-alt"></i>
+            <span>Relatórios Customizáveis</span>
+          </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                  <thead>
+
+                    <div class="widget-content">
+                <div class="span12 well">
+                    <div class="span4">
+                        <label for="">Cadastrado de:</label>
+                        <input type="date" name="dataInicial" class="span12" />
+                    </div>
+                    <br>
+                    <div class="span4">
+                        <label for="">até:</label>
+                        <input type="date" name="dataFinal" class="span12" />
+                    </div>
+                    <br>
+                    <div class="span4">
+                        <label for=""></label>
+                        <button class="btn btn-light"><i class="fas fa-eye"></i> Visualizar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+          
 
          
 
-        </div>
+ 
+
+    
         <!-- /.container-fluid -->
 
-        <!-- Sticky Footer -->
-        <footer class="sticky-footer">
-          <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-              <span>Copyright © Studio BlueMind 2018</span>
-            </div>
-          </div>
-        </footer>
 
-      </div>
       <!-- /.content-wrapper -->
 
     </div>

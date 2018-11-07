@@ -24,6 +24,11 @@
     <link href="../css/sb-admin.css" rel="stylesheet">
 
     <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
   </head>
 
@@ -123,31 +128,33 @@
         </li>
         <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#demo">Relatórios</button>
   <div id="demo" class="collapse">
-  <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
+  <hr color=white>
+        <li class="nav-item">
+          <a class="nav-link" href="../relatorios/rel_clientes.php">
               <i class="fas fa-user-alt"></i>
             <span>Clientes</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
+          <a class="nav-link" href="../relatorios/rel_estoque.php">
               <i class="fas fa-fw fa-boxes"></i>
             <span>Estoque</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
+          <a class="nav-link" href="../relatorios/rel_os.php">
               <i class="fas fa-fw fa-tags"></i>
             <span>OS's</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
+          <a class="nav-link" href="../relatorios/rel_vendas.php">
               <i class="fas fa-fw fa-shopping-cart"></i>
             <span>Vendas</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
+          <a class="nav-link" href="../relatorios/rel_lanc.php">
               <i class="fas fa-money-bill-alt"></i>
             <span>Lançamentos</span></a>
         </li>
+        <hr color=white>
   </div>
       </ul>
 

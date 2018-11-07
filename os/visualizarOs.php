@@ -6,12 +6,12 @@ $con = open_conexao();
    //recuperar valor passado por get
 $id = trim($_REQUEST['idos']);
     //buscar no banco de dados
-$rs = mysqli_query($con, "SELECT * FROM os INNER JOIN clientes ON (os.idcliente = clientes.id) INNER JOIN status ON (os.status = status.id) WHERE os.idos=".$id);
+$rs = mysqli_query($con, "SELECT * FROM os INNER JOIN clientes ON (os.idcliente = clientes.id) WHERE os.idos=".$id);
 
 $row = mysqli_fetch_array($rs);
 $idos = $row['idos']; 
 $cli = $row['idcliente']; 
-$sta = $row['descricaosta'];
+$sta = $row['status'];
 $dte = $row['dataentrada']; 
 $tip = $row['tipoeqp'];
 $mod = $row['modelo'];
@@ -171,31 +171,33 @@ close_conexao($con);
         </li>
         <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#demo">Relatórios</button>
   <div id="demo" class="collapse">
-  <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
+  <hr color=white>
+        <li class="nav-item">
+          <a class="nav-link" href="../relatorios/rel_clientes.php">
               <i class="fas fa-user-alt"></i>
             <span>Clientes</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
+          <a class="nav-link" href="../relatorios/rel_estoque.php">
               <i class="fas fa-fw fa-boxes"></i>
             <span>Estoque</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
+          <a class="nav-link" href="../relatorios/rel_os.php">
               <i class="fas fa-fw fa-tags"></i>
             <span>OS's</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
+          <a class="nav-link" href="../relatorios/rel_vendas.php">
               <i class="fas fa-fw fa-shopping-cart"></i>
             <span>Vendas</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
+          <a class="nav-link" href="../relatorios/rel_lanc.php">
               <i class="fas fa-money-bill-alt"></i>
             <span>Lançamentos</span></a>
         </li>
+        <hr color=white>
   </div>
       </ul>
 

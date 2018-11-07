@@ -18,6 +18,7 @@ $qtd = $row['qtd'];
 $qtd2 = $row2['qtd2'];
 $qtd3 = $row3['qtd3'];
 $qtd4 = $row4['qtd4'];
+$user = 'Netto N';
 
 close_conexao($con);
 
@@ -54,11 +55,6 @@ close_conexao($con);
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-    <a class="navbar-brand mr-1" href="index.html">Menu</a>
-
-    <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
-      <i class="fas fa-bars"></i>
-    </button>
 
     <!-- Navbar Search -->
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -77,8 +73,7 @@ close_conexao($con);
           <i class="fas fa-user-circle fa-fw"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-          <a class="dropdown-item" href="#">Settings</a>
-          <a class="dropdown-item" href="#">Activity Log</a>
+        <a class="dropdown-item">Olá <?php echo $user; ?></a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
         </div>
@@ -124,31 +119,33 @@ close_conexao($con);
         </li>
         <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#demo">Relatórios</button>
   <div id="demo" class="collapse">
+  <hr color=white>
   <li class="nav-item">
-          <a class="nav-link" href="relatorios/clientes.php">
+          <a class="nav-link" href="relatorios/rel_clientes.php">
               <i class="fas fa-user-alt"></i>
             <span>Clientes</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
+          <a class="nav-link" href="relatorios/rel_estoque.php">
               <i class="fas fa-fw fa-boxes"></i>
             <span>Estoque</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
+          <a class="nav-link" href="relatorios/rel_os.php">
               <i class="fas fa-fw fa-tags"></i>
             <span>OS's</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
+          <a class="nav-link" href="relatorios/rel_vendas.php">
               <i class="fas fa-fw fa-shopping-cart"></i>
             <span>Vendas</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
+          <a class="nav-link" href="relatorios/rel_lanc.php">
               <i class="fas fa-money-bill-alt"></i>
             <span>Lançamentos</span></a>
         </li>
+        <hr color=white>
   </div>
     </ul>
 
@@ -161,7 +158,7 @@ close_conexao($con);
           <li class="breadcrumb-item">
             <a href="#">Dashboard</a>
           </li>
-          <li class="breadcrumb-item active">Overview</li>
+          <li class="breadcrumb-item active">Resumo</li>
         </ol>
 
         <!-- Icon Cards-->

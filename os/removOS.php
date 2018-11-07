@@ -178,31 +178,33 @@ close_conexao($con);
         </li>
         <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#demo">Relatórios</button>
   <div id="demo" class="collapse">
-  <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
+  <hr color=white>
+        <li class="nav-item">
+          <a class="nav-link" href="../relatorios/rel_clientes.php">
               <i class="fas fa-user-alt"></i>
             <span>Clientes</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
+          <a class="nav-link" href="../relatorios/rel_estoque.php">
               <i class="fas fa-fw fa-boxes"></i>
             <span>Estoque</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
+          <a class="nav-link" href="../relatorios/rel_os.php">
               <i class="fas fa-fw fa-tags"></i>
             <span>OS's</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
+          <a class="nav-link" href="../relatorios/rel_vendas.php">
               <i class="fas fa-fw fa-shopping-cart"></i>
             <span>Vendas</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
+          <a class="nav-link" href="../relatorios/rel_lanc.php">
               <i class="fas fa-money-bill-alt"></i>
             <span>Lançamentos</span></a>
         </li>
+        <hr color=white>
   </div>
       </ul>
 
