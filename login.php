@@ -24,6 +24,7 @@
 
   <body class="bg-dark">
 
+      <form data-toggle="validator" method="post" action="ValLogin.php">
     <div class="container">
       <div class="card card-login mx-auto mt-5">
         <div class="card-header">Login</div>
@@ -31,23 +32,24 @@
           <form>
             <div class="form-group">
               <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email" required="required" autofocus="autofocus">
-                <label for="inputEmail">Email</label>
+                <input type="text" id="inputEmail" name="user" class="form-control" placeholder="Usuario" required="required" autofocus="autofocus">
+                <label for="inputEmail">Usuário</label>
               </div>
             </div>
             <div class="form-group">
               <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required="required">
+                <input type="password" id="inputPassword" name="pass" class="form-control" placeholder="Password" required="required">
                 <label for="inputPassword">Senha</label>
               </div>
             </div>
-            <a class="btn btn-primary btn-block" href="index.php">Login</a>
+            <input type="submit" class="btn btn-primary btn-block" value="Login"/>
           </form>
           <div class="text-center">
           </div>
         </div>
       </div>
     </div>
+    </form>
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

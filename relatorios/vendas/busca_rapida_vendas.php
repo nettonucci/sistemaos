@@ -1,7 +1,7 @@
 <?php 
     require_once '../../conexao.php';
     $con = open_conexao(); 
-    $rs = mysqli_query($con,"SELECT * FROM os INNER JOIN clientes ON (os.idcliente = clientes.id);");
+    $rs = mysqli_query($con,"SELECT * FROM vendas");
 ?>
 
 <html lang="en">
@@ -14,7 +14,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Relatorio rapido de os</title>
+  <title>Relatorio rapido de vendas</title>
 
   <!-- Bootstrap core CSS-->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -42,22 +42,21 @@
     <table  class="table table-striped">
 
             <tr>
-             <th widht="80" align="right">Cliente</th>
-             <th widht="80" align="right">Defeito</th>
-             <th widht="80" align="center">Status</th>
-             <th widht="80" align="center">Equipamento</th>
-             <th widht="80" align="center">Entrada</th>
-             <th widht="80" align="center">Saida</th>
+             <th widht="80" align="right">Cliente/Fornecedor</th>
+             <th widht="80" align="right">Descrição</th>
+             <th widht="80" align="center">Valor</th>
+             <th widht="80" align="center">Data da venda</th>
+             <th widht="80" align="center">Tipo da venda</th>
            </tr>
-           <?php while ($row = mysqli_fetch_array($rs)) { ?> 
 
-           <tr>
-            <td><?php echo $row['nome'] ?></td>
-            <td><?php echo $row['defeito'] ?></td>
-            <td><?php echo $row['status'] ?></td>
-            <td><?php echo $row['tipoeqp'] ?></td>
-            <td><?php echo $row['dataentrada'] ?></td>
-            <td><?php echo $row['datasaida'] ?></td>
+		<?php while ($row = mysqli_fetch_array($rs)) { ?> 
+          
+            <tr>
+            <td><?php echo $row['cliente'] ?></td>
+            <td><?php echo $row['descricaov'] ?></td>
+            <td>R$<?php echo $row['valor'] ?>,00</td>
+            <td><?php echo $row['datavenda'] ?></td>
+            <td><?php echo $row['tipovenda'] ?></td>
          </tr>
 
          
@@ -66,7 +65,7 @@
     </div> 
     <hr>
     <div>
-    <h5><?php echo 'Relatório rápido de OS';?></h5>
+    <h5><?php echo 'Relatório rápido de venda';?></h5>
     <hr>
     <?php
     date_default_timezone_set('America/Sao_Paulo');

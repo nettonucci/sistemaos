@@ -5,6 +5,7 @@
 //Header("Location: index.html");
 
 require_once 'conexao.php';
+require_once 'verifica.1.php';
 $con = open_conexao();
 $rs = mysqli_query($con,"SELECT COUNT(*) as qtd FROM clientes;"); //rs=record set (conjunto de registros)
 $rs2 = mysqli_query($con,"SELECT COUNT(*) as qtd2 FROM estoque;");
@@ -18,8 +19,11 @@ $qtd = $row['qtd'];
 $qtd2 = $row2['qtd2'];
 $qtd3 = $row3['qtd3'];
 $qtd4 = $row4['qtd4'];
-$user = 'Netto N';
 
+$usuario= $_SESSION['user'];
+$rs5 = mysqli_query($con,"select nome from usuarios where usuario ='$usuario';");
+$row5 = mysqli_fetch_array($rs5);
+$nome = $row5['nome'];
 close_conexao($con);
 
 ?>
@@ -73,7 +77,7 @@ close_conexao($con);
           <i class="fas fa-user-circle fa-fw"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-        <a class="dropdown-item">Olá <?php echo $user; ?></a>
+        <a class="dropdown-item">Olá <?php echo $nome ?></a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
         </div>
@@ -760,15 +764,15 @@ close_conexao($con);
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Deseja sair?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-body">Selecione sim para sair do sistema</div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Não</button>
+          <a class="btn btn-primary" href="sair.php">Sim</a>
         </div>
       </div>
     </div>

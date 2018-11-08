@@ -1,36 +1,24 @@
 <?php
    require_once '../conexao.php'; 
 
-   $status = trim($_POST['idstatus']); 
-   $idcliente = trim($_POST['idcli']); 
-   
-   date_default_timezone_set('America/Sao_Paulo');
+   $id = trim($_POST['id']);
+  
+   if (!empty($id)){
+      $con = open_conexao(); 
+      $sql = "DELETE FROM vendas WHERE idv='$id';";
 
-   $dataentrada = date('Y/m/d');
-   $tipoeqp = trim($_POST['idequip']);
-   $modelo = trim($_POST['idmodelo']);
-   $serial = trim($_POST['idserial']); 
-   $defeito = trim($_POST['iddef']); 
-   $obs = trim($_POST['idobs']); 
-
- 
-   if (!empty($status) && !empty($idcliente) && !empty($dataentrada) && !empty($defeito) && !empty($obs)){
-      $con = open_conexao();  
-      $sql = "INSERT INTO os 
-               (status, idcliente, dataentrada, tipoeqp, modelo, serial, defeito, obs)
-        VALUES ('$status', '$idcliente', '$dataentrada', '$tipoeqp', '$modelo', '$serial', '$defeito', '$obs');";  
-      $ins = mysqli_query($con, $sql); 
-
-      if ($ins==FALSE)
-        $msg= "Erro no cadastro de cliente<BR/>";
-      else {
-          $msg = "Foi inserido com sucesso";
-          unset($nome, $cpf, $telefone, $celular, $email, $cep, $rua, $numero, $bairro, $cidade, $estado); 
-      }
+      $rem = mysqli_query($con,$sql); 
       close_conexao($con); 
+
+      if ($rem==FALSE)
+        $msg= "Erro na remoção de Peças<BR/>";
+      else {
+          //$msg = "Foi removido ". mysqli_affected_rows() . " registro";
+          unset($id); 
+      }
       //echo $msg;
    }
-   //header("location: os.php");
+   //header("location: estoque.php"); 
 ?> 
 
 <!DOCTYPE html>
@@ -54,21 +42,21 @@
       
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">Nova OS</h4>
+          <h4 class="modal-title">Remover venda</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
         <!-- Modal body -->
         <div class="modal-body">
          <?php
-            Echo 'OS aberta com sucesso!';
+            Echo 'Venda removida com sucesso!';
             
          ?>
         </div>
         
         <!-- Modal footer -->
         <div class="modal-footer">
-        <a class="btn btn-success" href="os.php"> OK</a>
+        <a class="btn btn-success" href="vendas.php"> OK</a>
         </div>
         
       </div>

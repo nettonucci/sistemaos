@@ -1,30 +1,31 @@
 <?php
-require_once '../conexao.php'; 
+  //verifica sessão, se está logado 
+//session_start();
+//if (!isset($_SESSION['user'])) //AND (!isset($_SESSION[nome])) ) 
+//Header("Location: index.html");
 
+require_once '../conexao.php';
 $con = open_conexao(); 
 //selectDb(); 
    //recuperar valor passado por get
-$id = trim($_REQUEST['id']);
+$id = trim($_REQUEST['idv']);
     //buscar no banco de dados
-$rs = mysqli_query($con,"SELECT * FROM ospeca INNER JOIN estoque ON(ospeca.idpeca = estoque.id) WHERE ospeca.idd=".$id);
+$rs = mysqli_query($con, "select * from vendas WHERE idv=".$id);
+
 $row = mysqli_fetch_array($rs); 
-$idd = $row['idd']; 
-$desc = $row['descricao'];
-$vend = $row['precovenda']; 
-$qtd = $row['quantidadeos'];
-$idos = $row['idos'];
-$idpeca = $row['idpeca'];
+$cli = $row['cliente']; 
+$desc = $row['descricaov'];
+$val = $row['valor']; 
+$data = $row['datavenda'];
+$tipo = $row['tipovenda'];
 require_once '../verifica.php';
 $usuario= $_SESSION['user'];
 $rs5 = mysqli_query($con,"select nome from usuarios where usuario ='$usuario';");
 $row5 = mysqli_fetch_array($rs5);
 $user = $row5['nome'];
-
-close_conexao($con); 
+close_conexao($con);
 
 ?>
-
-<!DOCTYPE html>
 <html lang="en">
 
   <head>
@@ -51,9 +52,15 @@ close_conexao($con);
 
     <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
 
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
   </head>
 
-<body id="page-top">
+  <body id="page-top">
 
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
@@ -104,13 +111,13 @@ close_conexao($con);
             <i class="fas fa-fw fa-boxes"></i>
             <span>Estoque</span></a>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="os.php">
+        <li class="nav-item">
+          <a class="nav-link" href="../os/os.php">
             <i class="fas fa-fw fa-tags"></i>
             <span>Ordens de Serviço</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../vendas/vendas.php">
+        <li class="nav-item active">
+          <a class="nav-link" href="vendas.php">
             <i class="fas fa-fw fa-shopping-cart"></i>
             <span>Vendas</span></a>
         </li>
@@ -158,50 +165,56 @@ close_conexao($con);
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="../index.html">Dashboard</a>
+              <a href="index.html">Dashboard</a>
             </li>
-            <li class="breadcrumb-item">
-              <a href="os.php">Os</a>
+            <li class="breadcrumb-item active">
+            <a href="vendas.php">Vendas</a>
             </li>
-            <li class="breadcrumb-item">
-              <a href="os.php">Editar os</a>
-            </li>
-            <li class="breadcrumb-item active">Excluir Peça da OS</li>
+            <li class="breadcrumb-item active">Excluir venda</li>
           </ol>
 
-
+                      
           <!-- DataTables Example -->
-          <form data-toggle="validator" method="post" action="ValRemPecOS.php">
+          <form data-toggle="validator" method="post" action="ValRemVend.php">
+          <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
           <div class="card mb-3">
             <div class="card-header">
-              <i class="fas fa-user-alt"></i>
-              Excluir Peça da OS</div>
+              <i class="fas fa-shopping-cart"></i>
+              Excluir venda</div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
-
+         
                   <input type="hidden" name="id"  value="<?php echo $id?>">
-                  <input type="hidden" name="idos"  value="<?php echo $idos?>">
-                  <input type="hidden" name="idpeca"  value="<?php echo $idpeca?>">
-                  <input type="hidden" name="idqtd"  value="<?php echo $qtd?>">
                   
                   <div class="col-sm-4">
-                      <label>Descrição</label>
-                      <input type="text" class="form-control" name="idDesc" value="<?php echo $desc?>" disabled>
+                      <label>Cliente/Fornecedor</label>
+                      <input type="text" class="form-control" name="idDesc" value="<?php echo $cli?>" disabled>
                     </div>
-
-                      <div class="col-sm-4">
-                        <label>Preço</label>
-                        <input type="text" class="form-control" name="idVend" value="<?php echo $vend?>" disabled>
+                    <hr>
+                    <div class="col-sm-4">
+                        <label>Descrição</label>
+                        <input type="text" class="form-control" name="idComp" value="<?php echo $desc?>" disabled>
                       </div>
+                      <hr>
                       <div class="col-sm-4">
-                        <label>Quantidade</label>
-                        <input type="text" class="form-control" name="quantidade" value="<?php echo $qtd?>" disabled>
+                        <label>Valor</label>
+                        <input type="text" class="form-control" name="idVend" value="R$<?php echo $val?>,00" disabled>
+                      </div>
+                      <hr>
+                      <div class="col-sm-4">
+                        <label>Data da venda</label>
+                        <input type="text" class="form-control" name="idQtd" value="<?php echo $data?>" disabled>
+                      </div>
+                      <hr>
+                      <div class="col-sm-4">
+                        <label>Tipo da venda</label>
+                        <input type="text" class="form-control" name="idQtd" value="<?php echo $tipo?>" disabled>
                       </div>
                       <br>
                       <input type="submit" class="btn btn-outline-danger" value="Excluir"/>
                     </form>
+         
                   </tbody>
                 </table>
               </div>
@@ -211,19 +224,10 @@ close_conexao($con);
 
          
 
-        </div>
-        <!-- /.container-fluid -->
+        
 
-        <!-- Sticky Footer -->
-        <footer class="sticky-footer">
-          <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-              <span>Copyright © Studio BlueMind 2018</span>
-            </div>
-          </div>
-        </footer>
+                    
 
-      </div>
       <!-- /.content-wrapper -->
 
     </div>

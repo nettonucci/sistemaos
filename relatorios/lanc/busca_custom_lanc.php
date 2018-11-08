@@ -1,7 +1,18 @@
 <?php 
     require_once '../../conexao.php';
+    $datainicial = trim($_POST['dataInicial']);
+    $datafinal = trim($_POST['dataFinal']);
     $con = open_conexao(); 
-    $rs = mysqli_query($con,"SELECT * FROM os INNER JOIN clientes ON (os.idcliente = clientes.id);");
+    $sql = mysqli_query($con, "SELECT * FROM caixa INNER JOIN for_pgto ON (caixa.mtdpgto = for_pgto.id) WHERE dataentrada BETWEEN '$datainicial' AND '$datafinal'; ");
+ 
+    $sql2 = mysqli_query($con, "SELECT count(*) AS qtd FROM caixa WHERE dataentrada BETWEEN '$datainicial' AND '$datafinal'; "); 
+    $row2 = mysqli_fetch_array($sql2); 
+    
+
+    $qtd = $row2['qtd']; 
+    if($qtd==0){
+        echo $msg = "<script language='javascript' type='text/javascript'>alert('Nenhum resultado encontrado'); window.close();</script>";;
+    }
 ?>
 
 <html lang="en">
@@ -14,7 +25,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Relatorio rapido de os</title>
+  <title>Relatorio Customisado de lançamento</title>
 
   <!-- Bootstrap core CSS-->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -41,23 +52,27 @@
     <div class="container">
     <table  class="table table-striped">
 
-            <tr>
-             <th widht="80" align="right">Cliente</th>
-             <th widht="80" align="right">Defeito</th>
-             <th widht="80" align="center">Status</th>
-             <th widht="80" align="center">Equipamento</th>
-             <th widht="80" align="center">Entrada</th>
-             <th widht="80" align="center">Saida</th>
+          <tr>
+             <th widht="80" align="right">Cliente/Fornecedor</th>
+             <th widht="80" align="right">Descrição</th>
+             <th widht="80" align="center">Valor</th>
+             <th widht="80" align="center">Metodo de pagamento</th>
+             <th widht="80" align="center">Forma de pagamento</th>
+             <th widht="80" align="center">Data</th>
+             <th widht="80" align="center">Tipo</th>
+             <th></th>
            </tr>
-           <?php while ($row = mysqli_fetch_array($rs)) { ?> 
-
+           <?php while ($row = mysqli_fetch_array($sql)) { ?> 
            <tr>
-            <td><?php echo $row['nome'] ?></td>
-            <td><?php echo $row['defeito'] ?></td>
-            <td><?php echo $row['status'] ?></td>
-            <td><?php echo $row['tipoeqp'] ?></td>
+             
+
+            <td><?php echo $row['clientepgto'] ?></td>
+            <td><?php echo $row['eqppgto'] ?></td>
+            <td>R$<?php echo $row['valpgto'] ?>,00</td>
+            <td><?php echo $row['tipopgto'] ?></td>
+            <td><?php echo $row['formpgto'] ?></td>
             <td><?php echo $row['dataentrada'] ?></td>
-            <td><?php echo $row['datasaida'] ?></td>
+            <td><?php echo $row['tipopgtoo'] ?></td>
          </tr>
 
          
@@ -66,7 +81,14 @@
     </div> 
     <hr>
     <div>
-    <h5><?php echo 'Relatório rápido de OS';?></h5>
+    <h5><?php 
+    echo 'Relatório customizado de lançamentos - ';
+    echo 'entre as datas: ';
+    echo $datainicial;
+    echo ' a ';
+    echo $datafinal;
+    ?></h5>
+    
     <hr>
     <?php
     date_default_timezone_set('America/Sao_Paulo');

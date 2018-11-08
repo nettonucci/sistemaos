@@ -9,7 +9,8 @@
    $forpgto = trim($_POST['idforpgto']);
    $pgto = 1;
    $tip = 'RECEITA';
-   $data = trim($_POST['iddata']);
+   date_default_timezone_set('America/Sao_Paulo');
+   $data = date('Y/m/d');
    $status = 'Equipamento entregue';
    $porc = trim($_POST['idporc']);
    $real = trim($_POST['idreal']);
