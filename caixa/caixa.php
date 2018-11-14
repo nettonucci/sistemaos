@@ -161,31 +161,13 @@ close_conexao($con);
   <br>
   <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#demo1">Configuração</button>
   <div id="demo1" class="collapse">
+  <hr color=white>
   <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
-              <i class="fas fa-user-alt"></i>
-            <span>Clientes</span></a>
+          <a class="nav-link" href="../user/msg_aut.php">
+          <i class="fas fa-key"></i>
+            <span>Usuários</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
-              <i class="fas fa-fw fa-boxes"></i>
-            <span>Estoque</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
-              <i class="fas fa-fw fa-tags"></i>
-            <span>OS's</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
-              <i class="fas fa-fw fa-shopping-cart"></i>
-            <span>Vendas</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="caixa.php">
-              <i class="fas fa-money-bill-alt"></i>
-            <span>Lançamentos</span></a>
-        </li>
+        <hr color=white>
   </div>
       </ul>
 
@@ -390,7 +372,6 @@ close_conexao($con);
            <?php while ($row = mysqli_fetch_array($rs)) { ?> 
            <tr>
              
-
             <td><?php echo $row['clientepgto'] ?></td>
             <td><?php echo $row['eqppgto'] ?></td>
             <td>R$<?php echo $row['valpgto'] ?>,00</td>
@@ -412,9 +393,9 @@ close_conexao($con);
             ?>
 
           <td>
-            <button type="button" class="btn btn-danger" title="Remover cliente"
-            onclick="javascript:location.href='removCli.php?id=' 
-            + <?php echo $row['id'] ?> ">
+            <button type="button" class="btn btn-danger" title="Remover lançamento"
+            onclick="javascript:location.href='removLanc.php?iid=' 
+            + <?php echo $row['iid'] ?> ">
             <span class="ion-trash-a" aria-hidden="true"></span>
           </button>                 
         </td>                    

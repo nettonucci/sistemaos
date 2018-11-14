@@ -1,31 +1,24 @@
 <?php
    require_once '../conexao.php'; 
 
-   $desc = trim($_POST['idDes']); 
-   $comp = trim($_POST['idComp']); 
-   $vend = trim($_POST['idVend']); 
-   $qtd = trim($_POST['idQtd']); 
-   date_default_timezone_set('America/Sao_Paulo');
-   $data = date('Y/m/d'); 
-   
- 
-   if (!empty($desc) && !empty($comp) && !empty($vend) && !empty($qtd)){
-      $con = open_conexao();  
-      $sql = "INSERT INTO estoque 
-               (descricao, precocompra, precovenda, quantidade, datacad)
-        VALUES ('$desc', '$comp', '$vend', '$qtd', '$data');";  
-      $ins = mysqli_query($con, $sql); 
+   $id = trim($_POST['id']);
+  
+   if (!empty($id)){
+      $con = open_conexao(); 
+      $sql = "DELETE FROM caixa WHERE iid='$id';";
 
-      if ($ins==FALSE)
-        $msg= "Erro no cadastro de cliente<BR/>";
-      else {
-          //$msg = "Foi inserido com sucesso";
-          unset($desc, $comp, $vend, $qtd); 
-      }
+      $rem = mysqli_query($con,$sql); 
       close_conexao($con); 
+
+      if ($rem==FALSE)
+        $msg= "Erro na remoção de Cliente<BR/>";
+      else {
+          //$msg = "Foi removido ". mysqli_affected_rows() . " registro";
+          unset($id); 
+      }
       //echo $msg;
    }
-  // header("location: estoque.php");
+   //header("location: clientes.php"); 
 ?> 
 
 <!DOCTYPE html>
@@ -49,21 +42,21 @@
       
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">Cadastrar Peça</h4>
+          <h4 class="modal-title">Remover Cliente</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
         <!-- Modal body -->
         <div class="modal-body">
          <?php
-            Echo 'Peça cadastrada com sucesso!';
+            Echo 'Lançamento removido com sucesso!';
             
          ?>
         </div>
         
         <!-- Modal footer -->
         <div class="modal-footer">
-        <a class="btn btn-success" href="estoque.php"> OK</a>
+        <a class="btn btn-success" href="caixa.php"> OK</a>
         </div>
         
       </div>

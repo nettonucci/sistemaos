@@ -156,6 +156,17 @@ close_conexao($con);
         </li>
         <hr color=white>
   </div>
+  <br>
+  <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#demo1">Configuração</button>
+  <div id="demo1" class="collapse">
+  <hr color=white>
+  <li class="nav-item">
+          <a class="nav-link" href="../user/msg_aut.php">
+          <i class="fas fa-key"></i>
+            <span>Usuários</span></a>
+        </li>
+        <hr color=white>
+  </div>
       </ul>
 
       <div id="content-wrapper">

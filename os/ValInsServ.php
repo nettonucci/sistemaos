@@ -15,12 +15,10 @@
 
       if ($ins==FALSE)
         $msg= "Erro no cadastro de cliente<BR/>";
-      else {
-          $msg = "Foi inserido com sucesso";
-          unset($serv, $val, $idos); 
+      else {  
+        $msg = "<script language='javascript' type='text/javascript'>alert('Serviço inserido com sucesso!'); window.location = 'editos.php?idos=$idos';</script>";
       }
       close_conexao($con); 
       echo $msg;
    }
-   header('location: editos.php?idos='.$id);
 ?> 

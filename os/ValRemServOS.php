@@ -17,21 +17,8 @@
       if ($rem==FALSE)
         $msg= "Erro na remoção de Peças<BR/>";
       else {
-          $msg = "Foi removido ". mysqli_affected_rows() . " registro";
-          unset($id); 
-      }
-      echo $idd;
-      echo '-';
-      echo $idos;
-      echo '-';
-      echo $serv;
-      echo $msg;    
+        $msg = "<script language='javascript' type='text/javascript'>alert('Serviço removido com sucesso!'); window.location = 'editos.php?idos=$idos';</script>";
+      }  
    }
-   echo $idd;
-   echo '-';
-   echo $idos;
-   echo '-';
-   echo $serv;
-   echo $msg;  
-   header('location: editos.php?idos='.$idos); 
+   //header('location: editos.php?idos='.$idos); 
 ?> 

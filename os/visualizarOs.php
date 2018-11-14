@@ -56,11 +56,7 @@ close_conexao($con);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+    
 
     <title>Sistema Nucci</title>
 
@@ -77,6 +73,13 @@ close_conexao($con);
     <link href="../css/sb-admin.css" rel="stylesheet">
 
     <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+    <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
   </head>
 
@@ -173,6 +176,17 @@ close_conexao($con);
           <a class="nav-link" href="../relatorios/rel_lanc.php">
               <i class="fas fa-money-bill-alt"></i>
             <span>Lançamentos</span></a>
+        </li>
+        <hr color=white>
+  </div>
+  <br>
+  <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#demo1">Configuração</button>
+  <div id="demo1" class="collapse">
+  <hr color=white>
+  <li class="nav-item">
+          <a class="nav-link" href="../user/msg_aut.php">
+          <i class="fas fa-key"></i>
+            <span>Usuários</span></a>
         </li>
         <hr color=white>
   </div>

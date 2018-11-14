@@ -12,7 +12,8 @@
    $bairro = trim($_POST['idBai']); 
    $cidade = trim($_POST['idCid']); 
    $estado = trim($_POST['idEst']);  
-   $data = trim($_POST['iddatacad']);
+   date_default_timezone_set('America/Sao_Paulo');
+   $data = date('Y/m/d');
 
  
    if (!empty($nome) && !empty($cpf) && !empty($telefone) && !empty($celular) && !empty($email) && !empty($cep) && !empty($rua) && !empty($numero) && !empty($bairro) && !empty($cidade) && !empty($estado)){

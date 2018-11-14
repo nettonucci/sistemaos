@@ -1,20 +1,32 @@
 <?php
-  //verifica sessão, se está logado 
-//session_start();
-//if (!isset($_SESSION['user'])) //AND (!isset($_SESSION[nome])) ) 
-//Header("Location: index.html");
+require_once '../conexao.php'; 
 
-require_once '../conexao.php';
-$con = open_conexao();
-$rs = mysqli_query($con,"select * from clientes;"); //rs=record set (conjunto de registros)
-$query4 = mysqli_query($con,"select * from for_pgto;");
+$con = open_conexao(); 
+//selectDb(); 
+   //recuperar valor passado por get
+$iid = trim($_REQUEST['iid']);
+    //buscar no banco de dados
+$rs = mysqli_query($con, "SELECT * FROM caixa INNER JOIN for_pgto ON (caixa.mtdpgto = for_pgto.id) WHERE caixa.iid=".$iid);
+
+$row = mysqli_fetch_array($rs); 
+$cli = $row['clientepgto']; 
+$eqp = $row['eqppgto'];
+$val = $row['valpgto']; 
+$mtd = $row['tipopgto'];
+$for = $row['formpgto'];
+$dat = $row['dataentrada'];
+$tip = $row['tipopgtoo'];
 require_once '../verifica.php';
 $usuario= $_SESSION['user'];
 $rs5 = mysqli_query($con,"select nome from usuarios where usuario ='$usuario';");
 $row5 = mysqli_fetch_array($rs5);
 $user = $row5['nome'];
-close_conexao($con);
+
+close_conexao($con); 
+
 ?>
+<!--
+<!DOCTYPE html>
 <html lang="en">
 
   <head>
@@ -47,8 +59,9 @@ close_conexao($con);
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
   </head>
+  <title>Sistema - Nucci</title>
 
-  <body id="page-top">
+<body id="page-top">
 
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
@@ -109,36 +122,36 @@ close_conexao($con);
             <i class="fas fa-fw fa-shopping-cart"></i>
             <span>Vendas</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../caixa/caixa.php">
+        <li class="nav-item active">
+          <a class="nav-link" href="caixa.php">
               <i class="fas fa-money-bill-alt"></i>
             <span>Lançamentos</span></a>
         </li>
         <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#demo">Relatórios</button>
   <div id="demo" class="collapse">
   <hr color=white>
-  <li class="nav-item">
-          <a class="nav-link" href="rel_clientes.php">
+        <li class="nav-item">
+          <a class="nav-link" href="../relatorios/rel_clientes.php">
               <i class="fas fa-user-alt"></i>
             <span>Clientes</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="rel_estoque.php">
+          <a class="nav-link" href="../relatorios/rel_estoque.php">
               <i class="fas fa-fw fa-boxes"></i>
             <span>Estoque</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="rel_os.php">
+          <a class="nav-link" href="../relatorios/rel_os.php">
               <i class="fas fa-fw fa-tags"></i>
             <span>OS's</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="rel_vendas.php">
+          <a class="nav-link" href="../relatorios/rel_vendas.php">
               <i class="fas fa-fw fa-shopping-cart"></i>
             <span>Vendas</span></a>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="rel_lanc.php">
+        <li class="nav-item">
+          <a class="nav-link" href="../relatorios/rel_lanc.php">
               <i class="fas fa-money-bill-alt"></i>
             <span>Lançamentos</span></a>
         </li>
@@ -164,154 +177,73 @@ close_conexao($con);
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="index.php">Dashboard</a>
+              <a href="index.html">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active">Relatorios</li>
-            <li class="breadcrumb-item active">Lançamentos</li>
+            <li class="breadcrumb-item">
+              <a href="estoque.php">Lançamentos</a>
+            </li>
+            <li class="breadcrumb-item active">Excluir lançamento</li>
           </ol>
 
-        <!-- /Informacoes aqui -->
 
-          <form data-toggle="validator" method="post" action="lanc/busca_rapida_lanc.php" target="_blank">
-          <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-          <div class="container">
-            <div class="row">
-              <div class="col-6">
-              <div class="card mb-3" style="width: 100%;">
+          <!-- DataTables Example -->
+          <form data-toggle="validator" method="post" action="valRemLanc.php">
+          <div class="card mb-3">
             <div class="card-header">
-            <i class="far fa-list-alt"></i>
-            <span>Relatórios Rápidos</span>
-            </div>
+              <i class="fas fa-money-bill-alt"></i>
+              Excluir lançamento</div>
             <div class="card-body">
               <div class="table-responsive">
-                  <thead>
-                  <div class="widget-content">
-                <button class="btn btn-light btn-block"><i class="fas fa-money-bill-alt"></i> Todos os lançamento</button>
-                
-            </div>
-
-                
-              </div>
-            </div>
-          </div>
-              </div>
-</form>
-           
-          
-              <div class="col-6">
-              <form data-toggle="validator" method="post" action="lanc/busca_custom_lanc.php" target="_blank">
-          <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-          <div class="card mb-3" style="width: 100%;">
-            <div class="card-header">
-            <i class="far fa-list-alt"></i>
-            <span>Relatórios Customizáveis</span>
-          </div>
-            <div class="card-body">
-              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
 
-                    <div class="widget-content">
-                <div class="span12 well">
-                    <div class="span4">
-                      <h5>Entrada</h5>
+                  <input type="hidden" name="id"  value="<?php echo $iid?>">
+                  
+                  <div class="col-sm-4">
+                      <label>Cliente/Fornecedor</label>
+                      <input type="text" class="form-control" name="idDesc" value="<?php echo $cli?>" disabled>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label>Descrição</label>
+                        <input type="text" class="form-control" name="idComp" value="<?php echo $eqp?>" disabled>
+                      </div>
+                      <div class="col-sm-4">
+                        <label>Valor</label>
+                        <input type="text" class="form-control" name="idVend" value="<?php echo $val?>" disabled>
+                      </div>
+                      <div class="col-sm-4">
+                        <label>Metodo de pagamento</label>
+                        <input type="text" class="form-control" name="idQtd" value="<?php echo $mtd?>" disabled>
+                      </div>
+                      <div class="col-sm-4">
+                        <label>Forma de pagamento</label>
+                        <input type="text" class="form-control" name="idQtd" value="<?php echo $for?>" disabled>
+                      </div>
+                      <div class="col-sm-4">
+                        <label>Data</label>
+                        <input type="text" class="form-control" name="idQtd" value="<?php echo $dat?>" disabled>
+                      </div>
+                      <div class="col-sm-4">
+                        <label>Tipo</label>
+                        <input type="text" class="form-control" name="idQtd" value="<?php echo $tip?>" disabled>
+                      </div>
                       <br>
-                        <label for="">de:</label>
-                        <input type="date" name="dataInicial" class="span12" />
-                    </div>
-                    <br>
-                    <div class="span4">
-                        <label for="">até:</label>
-                        <input type="date" name="dataFinal" class="span12" />
-                    </div>
-                    <br>
-                    <div class="span4">
-                        <label for=""></label>
-                        <button class="btn btn-light"><i class="fas fa-eye"></i> Visualizar</button>
-                    </div>
-                  </div>
-                </div>
+                      <input type="submit" class="btn btn-outline-danger" value="Excluir"/>
+                    </form>
+                  </tbody>
+                </table>
               </div>
             </div>
-          </form>
-        </div>
-
-        <div class="col-15">
-              <form data-toggle="validator" method="post" action="lanc/busca_custom_lanc2.php" target="_blank">
-          <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-          <div class="card mb-3" style="width: 100%;">
-            <div class="card-header">
-            <i class="far fa-list-alt"></i>
-            <span>Relatórios Customizáveis</span>
+            <div class="card-footer small text-muted"> </div>
           </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                  <thead>
 
-                    <div class="widget-content">
-                    <div class="span12 well">
-                    <div class="span4">
-                    <label>Metodo de pagamento:</label>
-                    <br>
-                    <select class="form-control" name="mtpgto" id="pgto">
-                        <option>Selecione...</option>
- 
-                          <?php while($tipo = mysqli_fetch_array($query4)) { ?>
-                              <option value="<?php echo $tipo['id'] ?>"><?php echo $tipo['tipopgto'] ?></option>
-                                <?php } ?>
-                                   </select>
-                    </div>
-                    <br>
-                    <div class="span4">
-                        <label for=""></label>
-                        <button class="btn btn-light"><i class="fas fa-eye"></i> Visualizar</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
+         
+
         </div>
-
-        <div class="col-15">
-              <form data-toggle="validator" method="post" action="lanc/busca_custom_lanc3.php" target="_blank">
-          <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-          <div class="card mb-3" style="width: 100%;">
-            <div class="card-header">
-            <i class="far fa-list-alt"></i>
-            <span>Relatórios Customizáveis</span>
-          </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                  <thead>
-
-                    <div class="widget-content">
-                    <div class="span12 well">
-                    <div class="span4">
-                    <label>Tipo:</label>
-                    <br>
-                    <select class="form-control" name="tipo" id="peca">
-                    <option>Selecione</option>
-                    <option value="'RECEITA'">RECEITA</option>
-                    <option value="'DESPESA'">DESPESA</option>
-                    </select>
-                    </div>
-                    <br>
-                    <div class="span4">
-                        <label for=""></label>
-                        <button class="btn btn-light"><i class="fas fa-eye"></i> Visualizar</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-
- 
-
-    
         <!-- /.container-fluid -->
 
+        <!-- Sticky Footer -->
 
       <!-- /.content-wrapper -->
 

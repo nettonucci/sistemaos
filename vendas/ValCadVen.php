@@ -10,7 +10,8 @@
    $porc = trim($_POST['idporc']);
    $real = trim($_POST['idreal']);
    $tip = 'RECEITA';
-   $data = trim($_POST['iddata']);
+   date_default_timezone_set('America/Sao_Paulo');
+   $data = date('Y-m-d');
    $peca2=null;
    $qtd = trim($_POST['idQtd']); 
    $qtdest=null;
@@ -52,9 +53,11 @@
    }
 
    
- 
-   if ($qtdest>=$qtd && $qtd!=0){
-      $con = open_conexao();  
+
+   if($tip2=='ESTOQUE')
+   {
+   if ($qtdest>=$qtd && $qtd!=0){ 
+    $con = open_conexao(); 
       $sql = "INSERT INTO vendas
                (cliente, descricaov, valor, datavenda, tipovenda)
         VALUES ('$cli', '$peca2', '$val', '$data', '$tip2');";  
@@ -79,7 +82,25 @@
     {
       $msg='Quantidade minima para venda: 1 Item';
     }
-    close_conexao($con);  
+  }
+
+
+  if ($tip2=='AVULSA'){ 
+    $con = open_conexao(); 
+     $sql = "INSERT INTO vendas
+              (cliente, descricaov, valor, datavenda, tipovenda)
+       VALUES ('$cli', '$peca2', '$val', '$data', '$tip2');";  
+     $ins = mysqli_query($con, $sql); 
+
+     $sql2 = "INSERT INTO caixa 
+               (clientepgto, eqppgto, valpgto, mtdpgto, formpgto, tipopgtoo, dataentrada)
+       VALUES ('$cli', '$peca2', '$val', '$mtdpgto', '$forpgto', '$tip', '$data');";   
+     $ins = mysqli_query($con, $sql2); 
+      $msg= 'Venda criada com sucesso!'; 
+      $msg2= 'Nova venda';
+     
+   }
+    
    
    //header('location: editos.php?idos='.$id);
 ?> 
@@ -113,7 +134,6 @@
         <div class="modal-body">
          <?php
             Echo $msg;
-            
          ?>
         </div>
         
